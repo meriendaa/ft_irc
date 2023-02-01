@@ -6,6 +6,7 @@ INC_DIR = include
 
 SRC =		main.cpp \
 			Server.cpp \
+			utils.cpp
 
 HEADER = Server.hpp
 

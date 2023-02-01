@@ -1,30 +1,28 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 20:03:49 by amantara          #+#    #+#             */
+/*   Updated: 2023/02/01 20:03:51 by amantara         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/Server.hpp"
 
-void show_err(std::string err)
-{
-    std::cout << err << std::endl;
-    exit(0); 
-}
-
 int main(int argc, char **argv)
 {
-    if(argc != 3)
-        show_err("Error Numero de argumentos");
-    int port = std::stoi(argv[1]);
-    std::string password = argv[2];
-    if(port <= 1023)
-        show_err("Error puerto invalido");
-    if(port > 65535)
-        show_err("Error numero puerto");
-    if(!password.size())
-    {
-        show_err("Contraseña vacia");
+
+    if (!is_valid_args(argc, argv)){
+        return (1);
     }
 
-    Server server(port, password);
-    server.setPass(password);
-    server.setPort(port);
+    std::cout << "Todos los argumentos son validos" << std::endl;
+
+    Server server(std::stoll(argv[1]), argv[2]);
+    // server.setPass(password);
+    // server.setPort(port);
 
 }
