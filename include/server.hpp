@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:04:09 by amantara          #+#    #+#             */
-/*   Updated: 2023/02/01 20:04:10 by amantara         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:58:21 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 
 #include <iostream>
 
+#include "./Config.hpp"
+
 
 bool is_valid_args(int argc, char **argv);
 
 class Server{
     private:
-        int port;
-        std::string password;
+        std::string const host;
+        std::string const serverName;
+        int const  port;
+        std::string const password;
+        std::string const version;
+
     public:
         Server(int port, std::string password);
         ~Server();
         int getPort() const;
-        void setPort(int port);
         std::string getPass() const;
-        void setPass(std::string password);
+        std::string getHost() const;
+        std::string getServerName() const;
+        std::string getVersion() const;
 };
 
 
