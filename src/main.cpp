@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "server.hpp"
+#include "../include/Server.hpp"
 
 void show_err(std::string err)
 {

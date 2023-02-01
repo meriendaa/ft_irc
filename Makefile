@@ -1,13 +1,27 @@
-NAME = ircserv
-SRC = main.cpp server.cpp
-HEADER = server.hpp
+NAME = ft_irc
+
+SRC_DIR = src
+OBJ_DIR = obj
+INC_DIR = include
+
+SRC =		main.cpp \
+			Server.cpp \
+
+HEADER = Server.hpp
+
+SRC := $(SRC:%=$(SRC_DIR)/%)
+OBJS = ${SRC:$(SRC_DIR)%.cpp=$(OBJ_DIR)%.o}
+
+DEP = ${OBJS:.o=.d}
+HEADER := $(HEADER:%=$(INC_DIR)/%)
+
+
 CC = c++
 CFLAG = -Wall -Wextra -Werror -std=c++98 -MMD
-OBJS = ${SRC:.cpp=.o}
-DEP = ${SRC:.cpp=.d}
-RM = rm -f
+RM = rm -rf
 
-%.o: %.cpp
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
+	@mkdir -p ${OBJ_DIR}
 	$(CC) $(CFLAG) -c $< -o $@
 
 ${NAME}:	${OBJS}
@@ -18,10 +32,10 @@ all:		${NAME}
 -include ${DEP}
 
 clean:
-			${RM} ${OBJS} ${DEP}
+			@${RM} ${OBJ_DIR}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME} ${NAME}.d
 
 re:			fclean all
 
